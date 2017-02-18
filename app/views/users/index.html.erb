@@ -1,0 +1,36 @@
+<div class="col-md-2">
+</div>
+
+<div class="col-md-8">
+    <h3>Secrets •
+      <a href="/users/<%= session[:user_id] %>"><button class="btn btn-success" type="button" name="button">My Secrets</button></a>
+      <a href="/logout"><button class="btn btn-danger" type="button" name="button">Logout</button></a></h3>
+
+      <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+      <% end %>
+
+      <!-- <button class="helloyo">Toggle</button>
+      <p>Hello</p>
+      <p class="goodbye" style="display: none">Good Bye</p> -->
+
+  <% @all_secrets.each do |secrets| %>
+<div class="panel panel-default">
+  <div class="panel-body"><%= secrets.secret %></div>
+  <div class="panel-heading">
+    <a href="/like_secret/<%= secrets.id %>" data-method = "post">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    </a>
+
+    <a href="/unlike_secret/<%= secrets.id %>" data-method = "post">
+      <span class="glyphicon glyphicon-thumbs-down"></span>
+    </a>
+
+    <strong><%= secrets.likes.count %> Likes</strong></div>
+
+</div>
+<% end %>
+
+</div>
+<div class="col-md-2">
+</div>

@@ -1,0 +1,46 @@
+<div class="col-md-8">
+  <h3>Hi <%= @user.name %>,</h3>
+  <% if flash[:success] %>
+  <div class="alert alert-success"><%= flash[:success] %></div>
+  <% end %>
+
+  <form class="form-group" action="/post_secret" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <textarea class="form-control" name="secret" rows="5" id="comment" placeholder="Post a secret annonymously..."></textarea>
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="user_id" value="<%= @user.id %>">
+    <hr>
+    <input class="btn btn-success" type="submit" name="" value="Post Secret">
+  </form>
+
+  <% @user_secrets.each do |secret| %>
+  <div class="panel panel-default">
+      <div class="panel-body">  <%= secret.secret %></div>
+      <div class="panel-heading">Posted on: <%= secret.created_at %>
+      <a href="/delete/<%= secret.id %>">
+      <button class="btn btn-danger" type="button" name="button">Delete</button>
+      </a>
+      </div>
+  </div>
+  <% end %>
+
+</div>
+
+
+
+
+<div class="col-md-4">
+  <h4>Secrets
+    <a href="/secrets"><button class="btn btn-success" type="button" name="button">Read Secrets</button></a>
+    <a href="/logout"><button class="btn btn-danger" type="button" name="button">Logout</button></a></h3>
+  <p>Secrets liked</p>
+  <% @user_likes.each do | liked_posts | %>
+  <div class="panel panel-success">
+    <div class="panel-body"><%= liked_posts.secret.secret %></div>
+    <div class="panel-heading">
+      <a href="/unlike_secret/<%= liked_posts.secret.id %>" data-method = "post">
+        <span class="glyphicon glyphicon-thumbs-down"></span></a>
+      <%= liked_posts.secret.likes.count %> <strong>Likes</strong></div>
+  </div>
+  <% end %>
+</div>
