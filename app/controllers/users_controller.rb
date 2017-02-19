@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :check_status, :except => [:login, :register, :auth, :create]
   def index
     # @users = User.all
+    @id = session[:user_id]
     @all_secrets = Secret.all
     render '/users/index'
   end
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
       flash[:success] = "You have successfully signed up!"
       redirect_to "/secrets"
     else
-      flash[:errors] = user.errors.full_messages
+      flash[:errors]
       redirect_to '/register'
     end
   end

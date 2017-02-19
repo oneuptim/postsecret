@@ -26,7 +26,13 @@
       <span class="glyphicon glyphicon-thumbs-down"></span>
     </a>
 
-    <strong><%= secrets.likes.count %> Likes</strong></div>
+    <strong><%= secrets.likes.count %> Likes</strong>
+
+    <% if secrets.user.id == @id %>
+    <a href="/delete/<%= secrets.id %>"><button class="btn btn-danger" type="button" name="button">Delete</button></a>
+    <% end %>
+  </div>
+
 
 </div>
 <% end %>

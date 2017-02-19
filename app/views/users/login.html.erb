@@ -5,6 +5,7 @@
   <% if flash[:success] %>
   <div class="alert alert-success"><%= flash[:success] %></div>
   <% end %>
+
   <form action="/users/auth" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <div class="input-group">
