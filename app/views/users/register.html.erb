@@ -3,6 +3,15 @@
 <div class="col-md-4">
   <h1>Register</h1>
   <br>
+
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |message| %>
+    <div class="alert alert-danger">
+    <p><%= message %></p>
+    </div>
+    <% end %>
+  <% end %>
+
   <form action="/register" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <div class="input-group">

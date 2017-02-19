@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       flash[:success] = "You have successfully signed up!"
       redirect_to "/secrets"
     else
-      flash[:errors]
+      flash[:errors] = user.errors.full_messages
       redirect_to '/register'
     end
   end
@@ -30,15 +30,18 @@ class UsersController < ApplicationController
 
   def auth
       user = User.find_by_email(params[:email])
+      # print @user.name, "<<<<<<<<<<<<<<<S"
 
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
         flash[:success] = "You have successfully logged in!"
-        print session[:user_id], " <========= SESSION"
+        # print session[:user_id], " <========= SESSION"
         # render json: user
         redirect_to "/users/#{user.id}"
       else
-        flash[:errors] = user.errors.full_messages
+        flash[:errors] = "Your login credentials are incorrect!"
+        # user.errors.full_messages
+        print flash[:errors], '<<<<<<<<<<<<<<<<<<'
         redirect_to '/login'
       end
       # if user.empty? == true
