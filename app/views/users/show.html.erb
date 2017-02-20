@@ -38,8 +38,10 @@
   <div class="panel panel-success">
     <div class="panel-body"><%= liked_posts.secret.secret %></div>
     <div class="panel-heading">
-      <a href="/unlike_secret/<%= liked_posts.secret.id %>" data-method = "post">
+      <button type="button" name="button" class="btn btn-default">
+        <a href="/unlike_secret/<%= liked_posts.secret.id %>" data-method = "post">
         <span class="glyphicon glyphicon-thumbs-down"></span></a>
+      </button>
       <%= liked_posts.secret.likes.count %> <strong>Likes</strong></div>
   </div>
   <% end %>

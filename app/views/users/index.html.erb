@@ -18,13 +18,16 @@
 <div class="panel panel-default">
   <div class="panel-body"><%= secrets.secret %></div>
   <div class="panel-heading">
-    <a href="/like_secret/<%= secrets.id %>" data-method = "post">
-    <span class="glyphicon glyphicon-thumbs-up"></span>
-    </a>
-
-    <a href="/unlike_secret/<%= secrets.id %>" data-method = "post">
-      <span class="glyphicon glyphicon-thumbs-down"></span>
-    </a>
+    <button type="button" name="button" class="btn btn-default">
+      <a href="/like_secret/<%= secrets.id %>" data-method = "post">
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      </a>
+    </button>
+    <button type="button" name="button" class="btn btn-default">
+      <a href="/unlike_secret/<%= secrets.id %>" data-method = "post">
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+      </a>
+    </button>
 
     <strong><%= secrets.likes.count %> Likes</strong>
 
